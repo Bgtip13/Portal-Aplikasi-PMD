@@ -61,7 +61,7 @@ export const apps: PmdApp[] = [
     name: 'Laporan Ekspedisi PMD',
     short: 'Ekspedisi',
     description:
-      'Input dan pantau laporan ekspedisi pengiriman PT Prima Mandiri Distribusi.',
+      'Input dan pantau laporan ekspedisi pengiriman CV Prima Mandiri Distribusi.',
     href: 'https://laporan-app-phi.vercel.app/',
     category: 'Operasional',
     tag: 'Operasional',
