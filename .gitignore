@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.local
+.vite
+
+# screenshot verifikasi
+artifacts/
+*.tsbuildinfo
+pmd-ecosystem.zip
