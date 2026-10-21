@@ -5,7 +5,7 @@ export type PmdApp = {
   short: string
   description: string
   href: string | null
-  category: 'Internal' | 'Keuangan' | 'Operasional' | 'Publik'
+  category: 'Core System' | 'Internal' | 'Keuangan' | 'Operasional' | 'Publik'
   tag: string
   /** Warna aksen kartu (dipakai untuk glow, badge, dan ikon fallback). */
   accent: string
