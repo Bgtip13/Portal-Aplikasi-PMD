@@ -61,7 +61,7 @@ export const apps: PmdApp[] = [
     name: 'Input Ekspedisi PMD',
     short: 'Input',
     description: 'Formulir input data laporan ekspedisi pengiriman CV Prima Mandiri Distribusi.',
-    href: 'https://script.google.com/macros/s/AKfycbx1wU9ZBWzHZ9SKmhG_H2Rf3NfwqltnFlVFQAnl43_Rlo47txWkT9XOY0ClIrfjIazP/exec',
+    href: 'https://script.google.com/macros/s/AKfycbxTAruS8krFpP5GZ9Gl8rAc3PZkeYFEq0TT1mivA8TiEg4rxO0fTIiocHG6wF0sFETC/exec',
     category: 'Operasional',
     tag: 'Input',
     accent: '#45d0ff',
