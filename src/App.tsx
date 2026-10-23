@@ -141,7 +141,7 @@ export default function App() {
               <img src="/logo.png" alt="Logo PMD" className="brand__logo-img" />
             </span>
             <span className="brand__text">
-              <strong>Portal APlikasi PMD</strong>
+              <strong>Portal Aplikasi PMD</strong>
               <small>CV Prima Mandiri Distribusi</small>
             </span>
           </div>
