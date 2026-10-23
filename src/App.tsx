@@ -170,7 +170,7 @@ export default function App() {
             <h1 className="hero__title">
               <span className="hero__greeting">{greeting},</span>
               <span className="hero__main">
-                Selamat datang di <span className="grad">Portal APlikasi PMD</span>
+                Selamat datang di <span className="grad">Portal Aplikasi PMD</span>
               </span>
             </h1>
 
