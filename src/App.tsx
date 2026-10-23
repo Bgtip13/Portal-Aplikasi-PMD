@@ -138,16 +138,16 @@ export default function App() {
   <header className="topbar"> 
     <div className="brand"> 
       <span className="brand__mark" aria-hidden="true"> 
-        {/* Cukup panggil /logo.png jika file ada di dalam folder public */}
         <img src="/logo.png" alt="Logo PMD" className="brand__logo-img" /> 
       </span> 
       <span className="brand__text"> 
         <strong>Portal APlikasi PMD</strong> 
         <small>CV Prima Mandiri Distribusi</small> 
       </span> 
-    </div>
-  </header>
+    </div> 
+  </header> 
 </div>
+
 
 
           <div className="topbar__right">
