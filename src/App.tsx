@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import type { CSSProperties } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import AppCard from './components/AppCard'
-import { CalendarIcon, LinkIcon, SearchIcon, SparkIcon } from './components/icons'
+import { CalendarIcon, LinkIcon, SearchIcon } from './components/icons'
 import { apps, categories, type Category } from './data/apps'
 
 const DATE_FORMAT = new Intl.DateTimeFormat('id-ID', {
@@ -15,7 +14,6 @@ const DATE_FORMAT = new Intl.DateTimeFormat('id-ID', {
 const TIME_FORMAT = new Intl.DateTimeFormat('id-ID', {
   hour: '2-digit',
   minute: '2-digit',
-  second: '2-digit',
   hour12: false,
   timeZone: 'Asia/Jakarta',
 })
@@ -33,57 +31,15 @@ function greetingFor(hour: number) {
   return 'Selamat malam'
 }
 
-const PARTICLE_COLORS = ['#a78bfa', '#45d0ff', '#ffb340', '#ff7ab6', '#2ee6a8', '#8b95ff']
-
 export default function App() {
   const [now, setNow] = useState(() => new Date())
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<Category>('Semua')
-  const glowRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const id = window.setInterval(() => setNow(new Date()), 1000)
+    const id = window.setInterval(() => setNow(new Date()), 30_000)
     return () => window.clearInterval(id)
   }, [])
-
-  useEffect(() => {
-    const el = glowRef.current
-    if (!el) return
-    let frame = 0
-    let x = window.innerWidth / 2
-    let y = window.innerHeight / 3
-
-    const render = () => {
-      frame = 0
-      el.style.transform = `translate3d(${x - 260}px, ${y - 260}px, 0)`
-    }
-
-    const handleMove = (event: PointerEvent) => {
-      x = event.clientX
-      y = event.clientY
-      if (!frame) frame = window.requestAnimationFrame(render)
-    }
-
-    window.addEventListener('pointermove', handleMove, { passive: true })
-    render()
-    return () => {
-      window.removeEventListener('pointermove', handleMove)
-      if (frame) window.cancelAnimationFrame(frame)
-    }
-  }, [])
-
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 26 }, (_, i) => ({
-        id: i,
-        left: (i * 37 + 11) % 100,
-        size: 2 + ((i * 13) % 4),
-        delay: (i * 1.9) % 20,
-        duration: 16 + ((i * 7) % 14),
-        color: PARTICLE_COLORS[i % PARTICLE_COLORS.length],
-      })),
-    [],
-  )
 
   const hour = Number(HOUR_FORMAT.format(now))
   const greeting = greetingFor(hour)
@@ -101,44 +57,18 @@ export default function App() {
     })
   }, [query, category])
 
+  const resetFilters = () => {
+    setQuery('')
+    setCategory('Semua')
+  }
+
   return (
     <div className="page">
-      <div className="bg" aria-hidden="true">
-        <span className="bg__blob bg__blob--1" />
-        <span className="bg__blob bg__blob--2" />
-        <span className="bg__blob bg__blob--3" />
-        <span className="bg__blob bg__blob--4" />
-        <span className="bg__halo" />
-        <span className="bg__grid" />
-        <span className="bg__vignette" />
-        <span className="bg__grain" />
-        <div className="bg__particles">
-          {particles.map((p) => (
-            <span
-              key={p.id}
-              style={
-                {
-                  left: `${p.left}%`,
-                  width: `${p.size}px`,
-                  height: `${p.size}px`,
-                  background: p.color,
-                  boxShadow: `0 0 ${p.size * 4}px ${p.color}`,
-                  animationDelay: `-${p.delay}s`,
-                  animationDuration: `${p.duration}s`,
-                } as CSSProperties
-              }
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="cursor-glow" ref={glowRef} aria-hidden="true" />
-
-      <div className="shell">
-        <header className="topbar">
+      <header className="header">
+        <div className="shell header__inner">
           <div className="brand">
-            <span className="brand__mark" aria-hidden="true">
-              <img src="/logo.png" alt="Logo PMD" className="brand__logo-img" />
+            <span className="brand__mark">
+              <img src="/logo.png" alt="Logo CV Prima Mandiri Distribusi" />
             </span>
             <span className="brand__text">
               <strong>Portal Aplikasi PMD</strong>
@@ -146,138 +76,123 @@ export default function App() {
             </span>
           </div>
 
-          <div className="topbar__right">
-            <span className="live">
-              <span className="live__dot" />
-              Sistem aktif
-            </span>
-            <span className="timepill">
+          <div className="header__meta">
+            <span className="header__clock">
               {TIME_FORMAT.format(now)}
               <em>WIB</em>
             </span>
+            <span className="status">
+              <span className="status__dot" aria-hidden="true" />
+              Sistem operasional
+            </span>
           </div>
-        </header>
+        </div>
+      </header>
 
-        <main>
-          <section className="hero">
-            <p className="eyebrow">
-              <span className="eyebrow__spark" aria-hidden="true">
-                <SparkIcon />
-              </span>
-              Pusat Sistem · CV Prima Mandiri Distribusi
-            </p>
+      <main className="shell">
+        <section className="hero">
+          <p className="hero__eyebrow">Pusat Sistem Internal</p>
+          <h1 className="hero__title">Portal Aplikasi PMD</h1>
+          <p className="hero__lead">
+            {greeting}. Seluruh aplikasi perusahaan tersedia dalam satu portal — mulai dari sistem
+            keuangan, operasional ekspedisi, hingga pelaporan. Pilih aplikasi di bawah untuk langsung
+            membukanya.
+          </p>
 
-            <h1 className="hero__title">
-              <span className="hero__greeting">{greeting},</span>
-              <span className="hero__main">
-                Selamat datang di <span className="grad">Portal Aplikasi PMD</span>
-              </span>
-            </h1>
-
-            <p className="hero__lead">
-              Anda berhasil masuk ke pusat sistem milik CV Prima Mandiri Distribusi. Semua aplikasi
-              perusahaan kini dalam satu pintu — pilih kartu di bawah untuk langsung membuka
-              aplikasinya.
-            </p>
-
-            <div className="hero__meta">
-              <span className="meta-pill">
-                <span className="meta-pill__icon" aria-hidden="true">
-                  <CalendarIcon />
-                </span>
-                {DATE_FORMAT.format(now)}
-              </span>
-              <span className="meta-pill">
-                <span className="meta-pill__icon" aria-hidden="true">
-                  <LinkIcon />
-                </span>
+          <ul className="hero__facts">
+            <li>
+              <CalendarIcon size={15} />
+              <span>{DATE_FORMAT.format(now)}</span>
+            </li>
+            <li>
+              <LinkIcon size={15} />
+              <span>
                 {connected} dari {apps.length} aplikasi terhubung
               </span>
-            </div>
-          </section>
+            </li>
+          </ul>
+        </section>
 
-          <section className="launcher" aria-labelledby="launcher-title">
-            <div className="launcher__head">
-              <div className="launcher__heading">
-                <h2 id="launcher-title">Aplikasi</h2>
-                <span className="launcher__count">{filtered.length} tampil</span>
-              </div>
-
-              <label className="search">
-                <span className="search__icon" aria-hidden="true">
-                  <SearchIcon />
-                </span>
-                <input
-                  type="search"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Cari aplikasi…"
-                  aria-label="Cari aplikasi"
-                  spellCheck={false}
-                />
-                {query && (
-                  <button
-                    type="button"
-                    className="search__clear"
-                    onClick={() => setQuery('')}
-                    aria-label="Hapus pencarian"
-                  >
-                    ×
-                  </button>
-                )}
-              </label>
+        <section className="apps" aria-labelledby="apps-title">
+          <div className="apps__head">
+            <div>
+              <h2 id="apps-title">Daftar aplikasi</h2>
+              <p className="apps__count">
+                Menampilkan {filtered.length} dari {apps.length} aplikasi
+              </p>
             </div>
 
-            <div className="chips" role="tablist" aria-label="Filter kategori">
-              {categories.map((item) => (
+            <label className="search">
+              <span className="search__icon" aria-hidden="true">
+                <SearchIcon size={15} />
+              </span>
+              <input
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Cari aplikasi"
+                aria-label="Cari aplikasi"
+                spellCheck={false}
+              />
+              {query && (
+                <button
+                  type="button"
+                  className="search__clear"
+                  onClick={() => setQuery('')}
+                  aria-label="Hapus pencarian"
+                >
+                  &times;
+                </button>
+              )}
+            </label>
+          </div>
+
+          <div className="filters" role="tablist" aria-label="Filter kategori">
+            {categories.map((item) => {
+              const isActive = category === item
+              return (
                 <button
                   key={item}
                   type="button"
                   role="tab"
-                  aria-selected={category === item}
-                  className={`chip${category === item ? ' is-active' : ''}`}
+                  aria-selected={isActive}
+                  className={`chip${isActive ? ' is-active' : ''}`}
                   onClick={() => setCategory(item)}
                 >
                   {item}
                 </button>
-              ))}
-            </div>
+              )
+            })}
+          </div>
 
+          {filtered.length > 0 ? (
             <div className="grid">
               {filtered.map((app, index) => (
                 <AppCard key={app.slug} app={app} index={index} />
               ))}
             </div>
+          ) : (
+            <div className="empty">
+              <span className="empty__icon" aria-hidden="true">
+                <SearchIcon size={20} />
+              </span>
+              <p>Tidak ada aplikasi yang sesuai dengan pencarian atau filter tersebut.</p>
+              <button type="button" onClick={resetFilters}>
+                Atur ulang filter
+              </button>
+            </div>
+          )}
+        </section>
+      </main>
 
-            {filtered.length === 0 && (
-              <div className="empty">
-                <span className="empty__icon" aria-hidden="true">
-                  <SearchIcon size={24} />
-                </span>
-                <p>Tidak ada aplikasi yang cocok dengan pencarian itu.</p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setQuery('')
-                    setCategory('Semua')
-                  }}
-                >
-                  Reset filter
-                </button>
-              </div>
-            )}
-          </section>
-        </main>
-
-        <footer className="footer">
-          <p>
-            © {now.getFullYear()} <strong>CV Prima Mandiri Distribusi</strong> · Portal Aplikasi PMD
-          </p>
+      <footer className="footer">
+        <div className="shell footer__inner">
+          <p>&copy; {now.getFullYear()} CV Prima Mandiri Distribusi. Seluruh hak dilindungi.</p>
           <p className="footer__note">
-            Pusat akses internal. Jaga kerahasiaan akun dan kata sandi Anda.
+            Akses internal — jaga kerahasiaan akun dan kata sandi Anda.
           </p>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </div>
   )
 }

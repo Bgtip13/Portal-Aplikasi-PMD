@@ -111,10 +111,29 @@ export function SearchIcon({ size = 16, strokeWidth = 1.8 }: IconProps) {
   )
 }
 
-export function SparkIcon({ size = 13, strokeWidth = 1.6 }: IconProps) {
+export function ArrowUpRightIcon({ size = 16, strokeWidth = 1.8 }: IconProps) {
   return (
     <svg {...base(size, strokeWidth)}>
-      <path d="M12 3.2l1.9 5.1 5.1 1.9-5.1 1.9-1.9 5.1-1.9-5.1L5 10.2l5.1-1.9z" />
+      <path d="M7 17 17 7" />
+      <path d="M8.6 7H17v8.4" />
+    </svg>
+  )
+}
+
+export function ArrowRightIcon({ size = 15, strokeWidth = 1.8 }: IconProps) {
+  return (
+    <svg {...base(size, strokeWidth)}>
+      <path d="M4.5 12h15" />
+      <path d="m13.5 6 6 6-6 6" />
+    </svg>
+  )
+}
+
+export function ClockIcon({ size = 16, strokeWidth = 1.7 }: IconProps) {
+  return (
+    <svg {...base(size, strokeWidth)}>
+      <circle cx="12" cy="12" r="8.4" />
+      <path d="M12 7.8V12l2.7 1.7" />
     </svg>
   )
 }

@@ -104,5 +104,5 @@ export const apps: PmdApp[] = [
   },
 ]
 
-export const categories = ['Semua', 'Internal', 'Keuangan', 'Operasional', 'Publik'] as const
+export const categories = ['Semua', 'Core System', 'Internal', 'Operasional', 'Publik'] as const
 export type Category = (typeof categories)[number]
