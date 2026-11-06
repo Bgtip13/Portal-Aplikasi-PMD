@@ -1,7 +1,8 @@
-# PMD Ecosystem
+# Portal Aplikasi Karyawan PMD
 
-Halaman pusat sistem (launcher) **CV Prima Mandiri Distribusi**. Berisi sambutan
-selamat datang dan 6 kartu aplikasi yang langsung membuka aplikasi terkait.
+Halaman pusat aplikasi (launcher) untuk karyawan **CV Prima Mandiri Distribusi**.
+Berisi sambutan, pencarian (tekan `/`), filter kategori, dan kartu aplikasi yang
+langsung membuka aplikasi terkait.
 
 ## Menjalankan
 
@@ -16,7 +17,7 @@ npm run preview  # cek hasil build
 
 Letakkan file logo di `public/icons/` dengan nama sesuai daftar di
 [`public/icons/README.md`](public/icons/README.md). Selama logo belum ada, kartu
-memakai ikon gradien + emoji sebagai fallback sehingga tampilan tetap rapi.
+memakai ikon vektor bawaan sebagai fallback sehingga tampilan tetap rapi.
 
 ## Mengubah daftar aplikasi
 

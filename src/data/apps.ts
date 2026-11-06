@@ -13,7 +13,7 @@ export type PmdApp = {
 }
 
 /**
- * Data seluruh aplikasi di PMD Ecosystem.
+ * Data seluruh aplikasi di Portal Aplikasi Karyawan PMD.
  * Tambah / ubah aplikasi cukup di sini.
  *
  * Untuk logo: taruh file di folder `public/icons/` dengan nama sesuai `slug`
@@ -37,7 +37,7 @@ export const apps: PmdApp[] = [
     name: 'PMD Ecosystem 4.0',
     short: 'PMD Ecosystem 4.0 · APK version',
     description:
-      'Shorrtcut untuk download aplikasi PMD Ecosystem 4.0.apk disini.',
+      'Pintasan untuk mengunduh aplikasi PMD Ecosystem 4.0 (.apk) ke ponsel Android.',
     href: 'https://drive.google.com/file/d/1UrjzjAaw3CGMIWIM0Y32y4gc5LMsCccT/view?usp=drivesdk',
     category: 'Internal',
     tag: 'Mobile · APK',
@@ -95,7 +95,7 @@ export const apps: PmdApp[] = [
     name: 'Dashboard SPV',
     short: 'Dashboard SPV',
     description:
-      'Dasboard supervisor untuk memantau penjualan, target, speed mingguan dan produk fokus.',
+      'Dashboard supervisor untuk memantau penjualan, target, speed mingguan, dan produk fokus.',
     href: 'https://dashboard-ebon-beta-83.vercel.app/',
     category: 'Operasional',
     tag: 'Supervisor',
