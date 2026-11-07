@@ -84,7 +84,7 @@ export const apps: PmdApp[] = [
     short: 'Website',
     description:
       'Situs resmi perusahaan: profil, layanan katalog, pricelist update, dan informasi publik CV Prima Mandiri Distribusi.',
-    href: 'https://primamandiridistribusiwebsite.vercel.app/',
+    href: 'https://www.pmdklaten.com/',
     category: 'Publik',
     tag: 'Publik',
     accent: '#ff7ab6',
