@@ -38,7 +38,7 @@ export const apps: PmdApp[] = [
     short: 'PMD Ecosystem 4.0 · APK version',
     description:
       'Pintasan untuk mengunduh aplikasi PMD Ecosystem 4.0 (.apk) ke ponsel Android.',
-    href: 'https://drive.google.com/file/d/1UrjzjAaw3CGMIWIM0Y32y4gc5LMsCccT/view?usp=drivesdk',
+    href: 'https://drive.google.com/drive/folders/1cVWdyL6W1r7rCW38auR9Fy6hQ9DJUJTP?usp=drive_link',
     category: 'Internal',
     tag: 'Mobile · APK',
     accent: '#ffb340',
